@@ -5,6 +5,12 @@ use App\Hotel;
 
 class HotelController extends Controller
 {
+    private $photos_path;
+    public function __construct()
+    {
+        $this->photos_path = public_path('/public/images/uploads');
+    }
+
     public function index()
     {
         return Hotel::all();
