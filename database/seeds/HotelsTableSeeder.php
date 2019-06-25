@@ -13,7 +13,9 @@ class HotelsTableSeeder extends Seeder
     public function run()
     {
         // Truncate existing records to start from scratch.
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Hotel::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = \Faker\Factory::create();
 
