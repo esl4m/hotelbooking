@@ -14,7 +14,7 @@ class CreateHotelsTable extends Migration
     public function up()
     {
         Schema::create('hotels', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name');
             $table->text('address')->nullable();
             $table->string('city')->nullable();
@@ -24,6 +24,7 @@ class CreateHotelsTable extends Migration
             $table->string('phonenumber');
             $table->string('email');
             $table->string('image');
+            $table->softDeletes();  // - deleted at-
             $table->timestamps();
         });
     }
