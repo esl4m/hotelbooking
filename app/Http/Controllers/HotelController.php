@@ -11,9 +11,14 @@ class HotelController extends Controller
         $this->photos_path = public_path('/public/images/uploads');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return Hotel::all();
+        $hotels = Hotel::all();
+        if ($request->api){
+            return response()->json($hotels, 200);
+        } else {
+            return view ('hotels.index', compact('hotels'));
+        }
     }
 
     /**
