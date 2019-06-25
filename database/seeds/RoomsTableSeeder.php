@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Hotel;
 use App\Room;
+use App\RoomType;
 
 class RoomsTableSeeder extends Seeder
 {
@@ -13,20 +15,18 @@ class RoomsTableSeeder extends Seeder
     public function run()
     {
         // Truncate existing records to start from scratch.
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Room::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $faker = \Faker\Factory::create();
 
         // Create Rooms in our database:
         for ($i = 0; $i < 11; $i++) {
             Room::create([
-                'hotel_id' => function() {
-                    return factory(App\Hotel::class)->get()->id;
-                },
+                'hotel_id' => Hotel::all()->random()->id,
                 'room_name' => $faker->text,
-                'room_types_id' => function() {
-                    return factory(App\RoomType::class)->get()->id;
-                },
+                'room_type' => RoomType::all()->random()->id,
                 'image' => $faker->Image,
             ]);
         }
