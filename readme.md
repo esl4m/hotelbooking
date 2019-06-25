@@ -16,7 +16,6 @@ HotelBooking is a Hotel Booking Application. Application let's you book room in 
 ```
 
 ## To-do
-- Add controllers
 - Add api endpoint
 - Login & Logout API
 - Room Manager.
