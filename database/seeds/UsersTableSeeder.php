@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         // Generate users
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,
