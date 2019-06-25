@@ -4,8 +4,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <hotels-list></hotels-list>
-                <div class="card">
+                <hotels-list :hotels="{{$hotels}}"></hotels-list>
+                {{-- <div class="card">
                     <div class="card-header">
                         Manage Hotels
 
@@ -65,7 +65,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
