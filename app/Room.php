@@ -32,8 +32,4 @@ class Room extends Model
     {
         return $this->hasOne('App\RoomType');
     }
-    public function capacity()
-    {
-        return $this->hasOne('App\RoomCapacity');
-    }
 }

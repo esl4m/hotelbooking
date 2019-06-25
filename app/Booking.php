@@ -3,9 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Hotel;
-use App\Room;
-use App\Customer;
 
 class Booking extends Model
 {
@@ -21,12 +18,12 @@ class Booking extends Model
      */
     public function hotel()
     {
-    	return $this->belongsTo('App\Hotel');
+    	return $this->belongsTo(Hotel::class, 'hotel_id');
     }
     public function rooms(){
-        return $this->belongsTo('App\Room','room_id', 'id');
+        return $this->belongsTo(Room::class, 'room_id');
     }
     public function customers(){
-        return $this->belongsTo('App\Customer','customer_id', 'id');
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 }

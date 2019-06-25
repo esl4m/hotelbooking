@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Room;
 
 class RoomType extends Model
 {
@@ -12,7 +11,7 @@ class RoomType extends Model
      *
      * @var array
      */
-    protected $fillable = [];
+    protected $fillable = ['type_name'];
 
     /**
      * Relationships between models
