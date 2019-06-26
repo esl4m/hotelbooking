@@ -23,8 +23,8 @@ Route::post('hotels', 'HotelController@store')->defaults('api', 'true');
 Route::put('hotels/{id}', 'HotelController@update')->defaults('api', 'true');
 Route::delete('hotels/{id}', 'HotelController@destroy')->defaults('api', 'true');
 
-Route::get('customers', 'CustomerController@index');
-Route::get('customers/{id}', 'CustomerController@show');
-Route::post('customers', 'CustomerController@store');
-Route::put('customers/{id}', 'CustomerController@update');
-Route::delete('customers/{id}', 'CustomerController@destroy');
+Route::get('customers', 'CustomerController@index')->defaults('api', 'true');
+Route::get('customers/{id}', 'CustomerController@show')->defaults('api', 'true');
+Route::post('customers', 'CustomerController@store')->defaults('api', 'true');
+Route::put('customers/{id}', 'CustomerController@update')->defaults('api', 'true');
+Route::delete('customers/{id}', 'CustomerController@destroy')->defaults('api', 'true');
