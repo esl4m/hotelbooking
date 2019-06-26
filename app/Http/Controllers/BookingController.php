@@ -95,10 +95,10 @@ class BookingController extends Controller
     {
         $booking = Booking::find($id);
 
-        if ($request->isJson()){
+        if ($request->api){
             return response()->json($booking, 200);
         } else {
-            return view('bookings', compact('booking'));
+            return view ('bookings', compact('booking'));
         }
     }
 
@@ -122,20 +122,21 @@ class BookingController extends Controller
         $start_date = $request->get('start_date');
         $end_date = $request->get('end_date');
 
-        $booking = new Booking;
+        $booking = Booking::findOrFail($id);
         $booking->hotel_id = $request->get('hotel_id');
         $booking->room_id =  $request->get('room_id');
         $booking->start_date = $start_date;
         $booking->end_date = $end_date;
         $booking->days = daysCalculate($start_date, $end_date);
         $booking->customer_id = $request->get('customer_id');
-        $booking->save();
 
-
-        $booking = Hotel::findOrFail($id);
         $booking->update($request->all());
 
-        return response()->json($booking, 200);
+        if ($request->api){
+            return response()->json($booking, 200);
+        } else {
+            return redirect('/bookings')->with('success', 'Booking Updated!');
+        }
     }
 
     /**
@@ -144,11 +145,16 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         $booking = Booking::findOrFail($id);
         $booking->delete();
 
-        return response()->json(null, 204);
+        if ($request->api){
+            return response()->json(null, 204);
+        } else {
+            return redirect('/bookings')->with('success', 'Booking deleted!');
+        }
+
     }
 }
