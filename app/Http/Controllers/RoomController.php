@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Room;
 
 class RoomController extends Controller
 {
@@ -11,9 +12,14 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $rooms = Room::all();
+        if ($request->api){
+            return response()->json($rooms, 200);
+        } else {
+            return view ('rooms.index', compact('rooms'));
+        }
     }
 
     /**
