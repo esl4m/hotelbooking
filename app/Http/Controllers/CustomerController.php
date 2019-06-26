@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
-use App\Http\Resources\CustomerResource;
 use Illuminate\Http\Request;
+use App\Customer;
 
 class CustomerController extends Controller
 {
@@ -13,9 +12,15 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // return CustomerResource::collection(Customer::with('fullname')->paginate(25));
+        $customers = Customer::all();
+        if ($request->api){
+            return response()->json($customers, 200);
+        } else {
+            return view ('customers.index', compact('customers'));
+        }
     }
 
     /**
