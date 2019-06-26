@@ -15,6 +15,7 @@
               <td>Room</td>
               <td>Start Date</td>
               <td>End Date</td>
+              <td>Number of Days</td>
               <td>Customer</td>
               <td colspan="2">Actions</td>
             </tr>
@@ -29,10 +30,8 @@
               <td>{{booking.room_id}}</td>
               <td>{{booking.start_date}}</td>
               <td>{{booking.end_date}}</td>
+              <td>{{booking.days}}</td>
               <td>{{booking.customer_id}}</td>
-              <td>
-                <img src="#">
-              </td>
               <td>
                 <a :href="'/bookings/edit/'+ booking.id"  class="btn btn-primary">Edit</a>
               </td>

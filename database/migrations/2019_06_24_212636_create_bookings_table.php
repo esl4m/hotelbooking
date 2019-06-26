@@ -24,6 +24,7 @@ class CreateBookingsTable extends Migration
 
             $table->date('start_date');
             $table->date('end_date');
+            $table->integer('days');
 
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade')->onUpdate('cascade');

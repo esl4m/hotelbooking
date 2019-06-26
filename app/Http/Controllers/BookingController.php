@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Booking;
+use DateTime;
 
 class BookingController extends Controller
 {
@@ -41,7 +42,36 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'hotel_id'=>'required',
+            'room_id'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'customer_id'=>'required'
+        ]);
+
+        // Calculate # of days
+        $start_date = $request->get('start_date');
+        $end_date = $request->get('end_date');
+
+        $first_date = new DateTime($start_date);
+        $second_date = new DateTime($end_date);
+        $days = $first_date->diff($second_date)->days;
+
+        $booking = new Booking;
+        $booking->hotel_id = $request->get('hotel_id');
+        $booking->room_id =  $request->get('room_id');
+        $booking->start_date = $start_date;
+        $booking->end_date = $end_date;
+        $booking->days = $days;
+        $booking->customer_id = $request->get('customer_id');
+        $booking->save();
+
+        if ($request->isJson()){
+            return response()->json($booking, 200);
+        } else {
+            return redirect('/bookings')->with('success', 'Booking created!');
+        }
     }
 
     /**
@@ -75,6 +105,9 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+        $booking->delete();
+
+        return response()->json(null, 204);
     }
 }
