@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       Manage Customers
-      <a href class="btn btn-primary">New Customer</a>
+      <a href="#" class="btn btn-primary">New Customer</a>
     </div>
 
     <div class="card-body">
@@ -25,10 +25,10 @@
           <tbody>
             <tr v-for="customer in customers" :key="customer.id">
               <td>
-                <a href>{{customer.id}}</a>
+                <a :href="'/customers/'+ customer.id">{{customer.id}}</a>
               </td>
               <td>
-                <a href>{{customer.fullname}}</a>
+                <a :href="'/customers/'+ customer.id">{{customer.fullname}}</a>
               </td>
               <td>{{customer.address}}</td>
               <td>{{customer.city}}</td>
@@ -37,13 +37,10 @@
               <td>{{customer.fax}}</td>
               <td>{{customer.email}}</td>
               <td>
-                <img src>
+                <a :href="'/customers/edit/'+ customer.id" class="btn btn-primary">Edit</a>
               </td>
               <td>
-                <a href class="btn btn-primary">Edit</a>
-              </td>
-              <td>
-                <form action method="post">
+                <form :action="'/customers/destroy/'+ customer.id" method="post">
                   <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
               </td>
