@@ -31,7 +31,26 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'fullname'=>'required',
+            'phone'=>'required',
+            'email'=>'required'
+        ]);
+
+        $customer = new Customer();
+        $customer->fullname = $request->get('fullname');
+        $customer->address = $request->get('address');
+        $customer->city = $request->get('city');
+        $customer->phone =  $request->get('phone');
+        $customer->fax =  $request->get('fax');
+        $customer->email = $request->get('email');
+        $customer->save();
+
+        if ($request->api){
+            return response()->json($customer, 200);
+        } else {
+            return redirect('/customers')->with('success', 'Customer Created!');
+        }
     }
 
     /**
@@ -40,9 +59,14 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $customer = Customer::find($id);
+        if ($request->api){
+            return response()->json($customer, 200);
+        } else {
+            return view('customers', compact('customer'));
+        }
     }
 
     /**
@@ -54,7 +78,29 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'fullname'=>'required',
+            'phone'=>'required',
+            'email'=>'required'
+        ]);
+
+        $customer = Customer::findOrFail($id);
+
+        $customer->fullname = $request->get('fullname');
+        $customer->address = $request->get('address');
+        $customer->city = $request->get('city');
+        $customer->phone =  $request->get('phone');
+        $customer->fax =  $request->get('fax');
+        $customer->email = $request->get('email');
+
+        $customer->update($request->all());
+
+        if ($request->api){
+            return response()->json($customer, 200);
+        } else {
+            return redirect('/customers')->with('success', 'Customer Updated!');
+        }
+
     }
 
     /**
@@ -63,8 +109,15 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        $customer->delete();
+
+        if ($request->api){
+            return response()->json(null, 204);
+        } else {
+            return redirect('/customers')->with('success', 'Customer deleted!');
+        }
     }
 }
