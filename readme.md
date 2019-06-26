@@ -12,8 +12,19 @@ HotelBooking is a Hotel Booking Application. Application let's you book room in 
 - Provision your vagrant
 - Rename .env.example to .env 
 - Update .env according to your db settings
-- run php artisan migrate
 ```
+#### For migrations Run:
+``` $ php artisan migrate ```
+
+#### Import seeds
+``` $ php artisan db:seed ```
+
+#### Install JS Dependencies
+``` $ npm install ```
+
+#### Watch Files
+``` $ npm run watch ```
+
 
 ## To-do
 - Add api endpoint
