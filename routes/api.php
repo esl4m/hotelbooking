@@ -28,3 +28,9 @@ Route::get('customers/{id}', 'CustomerController@show')->defaults('api', 'true')
 Route::post('customers', 'CustomerController@store')->defaults('api', 'true');
 Route::put('customers/{id}', 'CustomerController@update')->defaults('api', 'true');
 Route::delete('customers/{id}', 'CustomerController@destroy')->defaults('api', 'true');
+
+Route::get('rooms', 'RoomController@index')->defaults('api', 'true');
+Route::get('rooms/{id}', 'RoomController@show')->defaults('api', 'true');
+Route::post('rooms', 'RoomController@store')->defaults('api', 'true');
+Route::put('rooms/{id}', 'RoomController@update')->defaults('api', 'true');
+Route::delete('rooms/{id}', 'RoomController@destroy')->defaults('api', 'true');
