@@ -23,6 +23,12 @@ Route::post('hotels', 'HotelController@store')->defaults('api', 'true');
 Route::put('hotels/{id}', 'HotelController@update')->defaults('api', 'true');
 Route::delete('hotels/{id}', 'HotelController@destroy')->defaults('api', 'true');
 
+Route::get('bookings', 'BookingController@index')->defaults('api', 'true');
+Route::get('bookings/{id}', 'BookingController@show')->defaults('api', 'true');
+Route::post('bookings', 'BookingController@store')->defaults('api', 'true');
+Route::put('bookings/{id}', 'BookingController@update')->defaults('api', 'true');
+Route::delete('bookings/{id}', 'BookingController@destroy')->defaults('api', 'true');
+
 Route::get('customers', 'CustomerController@index')->defaults('api', 'true');
 Route::get('customers/{id}', 'CustomerController@show')->defaults('api', 'true');
 Route::post('customers', 'CustomerController@store')->defaults('api', 'true');
