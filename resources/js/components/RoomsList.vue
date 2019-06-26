@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       Manage Rooms
-      <a href class="btn btn-primary">Add New Room</a>
+      <a :href="'#'" class="btn btn-primary">Add New Room</a>
     </div>
 
     <div class="card-body">
@@ -12,7 +12,7 @@
             <tr>
               <td>ID</td>
               <td>Room Name</td>
-              <td>Hotel </td>
+              <td>Hotel</td>
               <td>Room Type</td>
               <td>Room Image</td>
               <td colspan="2">Actions</td>
@@ -22,10 +22,10 @@
           <tbody>
             <tr v-for="room in rooms" :key="room.id">
               <td>
-                <a :href="#">{{room.id}}</a>
+                <a :href="'/rooms/'+ room.id">{{room.id}}</a>
               </td>
               <td>
-                <a :href="#">{{room.room_name}}</a>
+                <a :href="'/rooms/'+ room.id">{{room.room_name}}</a>
               </td>
               <td>{{room.hotel_id}}</td>
               <td>{{room.room_type}}</td>
