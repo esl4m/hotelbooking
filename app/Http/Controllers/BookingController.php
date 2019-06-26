@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Booking;
 
 class BookingController extends Controller
 {
@@ -11,9 +12,25 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $bookings = Booking::all();
+        if ($request->api){
+            return response()->json($bookings, 200);
+        } else {
+            return view ('bookings.index', compact('bookings'));
+        }
+    }
+
+    /**
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function create()
+    {
+        $booking = new Booking;
+        return view('bookings.create', compact('booking'));
     }
 
     /**
