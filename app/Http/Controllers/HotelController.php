@@ -35,7 +35,12 @@ class HotelController extends Controller
             'email' => 'required|email|min:3|max:150|unique',
         ]);
         $hotel = Hotel::create($request->all());
-        return response()->json($hotel, 201);
+
+        if ($request->api){
+            return response()->json($hotel, 201);
+        } else {
+            return view ('hotels', compact('hotels'));
+        }
     }
 
     /**
@@ -44,9 +49,14 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        return Hotel::find($id);
+        $hotel = Hotel::find($id);
+        if ($request->api){
+            return response()->json($hotel, 200);
+        } else {
+            return view ('hotels', compact('hotel'));
+        }
     }
 
     /**
@@ -61,7 +71,11 @@ class HotelController extends Controller
         $hotel = Hotel::findOrFail($id);
         $hotel->update($request->all());
 
-        return response()->json($hotel, 200);
+        if ($request->api){
+            return response()->json($hotel, 200);
+        } else {
+            return redirect('/hotels')->with('success', 'Hotel Updated!');
+        }
     }
 
     /**
@@ -75,6 +89,10 @@ class HotelController extends Controller
         $hotel = Hotel::findOrFail($id);
         $hotel->delete();
 
-        return response()->json(null, 204);
+        if ($request->api){
+            return response()->json(null, 204);
+        } else {
+            return redirect('/hotels')->with('success', 'Hotel Deleted!');
+        }
     }
 }
