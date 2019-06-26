@@ -35,6 +35,21 @@ class BookingController extends Controller
     }
 
     /**
+     * Calculate # of days.
+     *
+     * @return int
+     */
+    public function daysCalculate($start_date, $end_date)
+    {
+        // Calculate # of days
+        $first_date = new DateTime($start_date);
+        $second_date = new DateTime($end_date);
+        $days = $first_date->diff($second_date)->days;
+
+        return $days;
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,16 +69,12 @@ class BookingController extends Controller
         $start_date = $request->get('start_date');
         $end_date = $request->get('end_date');
 
-        $first_date = new DateTime($start_date);
-        $second_date = new DateTime($end_date);
-        $days = $first_date->diff($second_date)->days;
-
         $booking = new Booking;
         $booking->hotel_id = $request->get('hotel_id');
         $booking->room_id =  $request->get('room_id');
         $booking->start_date = $start_date;
         $booking->end_date = $end_date;
-        $booking->days = $days;
+        $booking->days = daysCalculate($start_date, $end_date);
         $booking->customer_id = $request->get('customer_id');
         $booking->save();
 
@@ -80,9 +91,15 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+        $booking = Booking::find($id);
+
+        if ($request->isJson()){
+            return response()->json($booking, 200);
+        } else {
+            return view('bookings', compact('booking'));
+        }
     }
 
     /**
@@ -94,7 +111,31 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'hotel_id'=>'required',
+            'room_id'=>'required',
+            'start_date'=>'required',
+            'end_date'=>'required',
+            'customer_id'=>'required'
+        ]);
+
+        $start_date = $request->get('start_date');
+        $end_date = $request->get('end_date');
+
+        $booking = new Booking;
+        $booking->hotel_id = $request->get('hotel_id');
+        $booking->room_id =  $request->get('room_id');
+        $booking->start_date = $start_date;
+        $booking->end_date = $end_date;
+        $booking->days = daysCalculate($start_date, $end_date);
+        $booking->customer_id = $request->get('customer_id');
+        $booking->save();
+
+
+        $booking = Hotel::findOrFail($id);
+        $booking->update($request->all());
+
+        return response()->json($booking, 200);
     }
 
     /**

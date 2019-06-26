@@ -17,18 +17,6 @@
             @endif
             <form method="post" action="{{ route('bookings.store') }}">
                 @csrf
-                {{--<div class="form-group">--}}
-                    {{--<label for="first_name">Group:</label>--}}
-                    {{--<select class="chosen-select" name="group_id" id="user_group_id">--}}
-                        {{--@foreach($groups as $group)--}}
-                            {{--<option value="{{$group->id}}"--}}
-                                    {{--@if ($user->group_id && $group->id == old('group_id', $user->group_id))--}}
-                                    {{--selected="selected"--}}
-                                    {{--@endif--}}
-                            {{-->{{$group->name}}</option>--}}
-                        {{--@endforeach--}}
-                    {{--</select>--}}
-                {{--</div>--}}
                 <div class="form-group">
                     <label for="hotel_id">Hotel:</label>
                     <input type="number" class="form-control" name="hotel_id" value="" />
