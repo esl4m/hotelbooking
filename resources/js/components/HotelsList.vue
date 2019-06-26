@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       Manage Hotels
-      <a href="" class="btn btn-primary">New Hotel</a>
+      <a :href="'/hotels/create'" class="btn btn-primary">New Hotel</a>
     </div>
 
     <div class="card-body">
@@ -27,10 +27,10 @@
           <tbody>
             <tr v-for="hotel in hotels" :key="hotel.id">
               <td>
-                <a href="">{{hotel.id}}</a>
+                <a :href="'/hotels/'+ hotel.id">{{hotel.id}}</a>
               </td>
               <td>
-                <a href="">{{hotel.name}}</a>
+                <a :href="'/hotels/'+ hotel.id">{{hotel.name}}</a>
               </td>
               <td>{{hotel.address}}</td>
               <td>{{hotel.email}}</td>
@@ -40,13 +40,13 @@
               <td>{{hotel.phonenumber}}</td>
               <td>{{hotel.email}}</td>
               <td>
-                <img src="">
+                <img src="#">
               </td>
               <td>
-                <a href="" class="btn btn-primary">Edit</a>
+                <a :href="'/hotels/edit/'+ hotel.id" class="btn btn-primary">Edit</a>
               </td>
               <td>
-                <form action="" method="post">
+                <form :action="'/hotels/destroy/'+ hotel.id" method="post">
                   <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
               </td>
