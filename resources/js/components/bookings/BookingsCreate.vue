@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       Manage Bookings
-      <a :href="'/booking/create/'" class="btn btn-primary">New Booking</a>
+      <a :href="'/bookings/create/'" class="btn btn-primary">New Booking</a>
     </div>
 
     <div class="card-body">
@@ -34,10 +34,10 @@
                 <img src="#">
               </td>
               <td>
-                <a :href="'/booking/edit/'+ booking.id"  class="btn btn-primary">Edit</a>
+                <a :href="'/bookings/edit/'+ booking.id"  class="btn btn-primary">Edit</a>
               </td>
               <td>
-                <form :action="'/booking/destroy/'+ booking.id" method="post">
+                <form :action="'/bookings/destroy/'+ booking.id" method="post">
                   <button class="btn btn-danger" type="submit">Delete</button>
                 </form>
               </td>
