@@ -27,10 +27,9 @@ HotelBooking is a Hotel Booking Application. Application let's you book room in 
 
 
 ## To-do
-- Add api endpoint
 - Login & Logout API
-- Room Manager.
-- Room Type Manager.
+- Viewing bookings in calendar mode
+- Allow non-registered users to add a reservation (it's related to Wordpress task)
 
 ## License
 
