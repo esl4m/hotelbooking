@@ -20,7 +20,8 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('hotels-list', require('./components/HotelsList.vue').default);
-Vue.component('bookings-list', require('./components/BookingsList.vue').default);
+Vue.component('bookings-list', require('./components/bookings/BookingsList.vue').default);
+Vue.component('bookings-create', require('./components/bookings/BookingsCreate.vue').default);
 Vue.component('customers-list', require('./components/CustomersList.vue').default);
 Vue.component('rooms-list', require('./components/RoomsList.vue').default);
 
