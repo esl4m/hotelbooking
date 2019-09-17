@@ -11,7 +11,7 @@ class Booking extends Model
      *
      * @var array
      */
-    protected $fillable = ['room_id', 'start_date', 'end_date', 'customer_id'];
+    protected $fillable = ['room_id', 'start_date', 'end_date', 'days', 'customer_id'];
 
     /**
      * Relationships between models
