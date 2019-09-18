@@ -74,7 +74,7 @@ class BookingController extends Controller
         $booking->room_id =  $request->get('room_id');
         $booking->start_date = $start_date;
         $booking->end_date = $end_date;
-        $booking->days = daysCalculate($start_date, $end_date);
+        $booking->days = $this->daysCalculate($start_date, $end_date);
         $booking->customer_id = $request->get('customer_id');
         $booking->save();
 
