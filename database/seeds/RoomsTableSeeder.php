@@ -22,7 +22,7 @@ class RoomsTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         // Create Rooms in our database:
-        for ($i = 0; $i < 11; $i++) {
+        for ($i = 1; $i < 11; $i++) {
             Room::create([
                 'hotel_id' => Hotel::all()->random()->id,
                 'room_name' => $faker->text,
