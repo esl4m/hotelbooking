@@ -23,7 +23,7 @@ class CreateHotelsTable extends Migration
             $table->string('zipcode')->nullable();
             $table->string('phonenumber');
             $table->string('email');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->softDeletes();  // - deleted at-
             $table->timestamps();
         });
