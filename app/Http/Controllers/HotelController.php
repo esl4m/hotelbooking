@@ -22,6 +22,17 @@ class HotelController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $hotels = new Hotel;
+        return view('hotels.create', compact('hotels'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -32,14 +43,24 @@ class HotelController extends Controller
         $request->validate([
             'name' => 'required',
             'phonenumber' => 'required',
-            'email' => 'required|email|min:3|max:150|unique',
+            'email' => 'required|email|min:3|max:150',
         ]);
-        $hotel = Hotel::create($request->all());
+
+        $hotel = new Hotel;
+        $hotel->name = $request->get('name');
+        $hotel->address =  $request->get('address');
+        $hotel->city = $request->get('city');
+        $hotel->state = $request->get('state');
+        $hotel->country = $request->get('country');
+        $hotel->zipcode = $request->get('zipcode');
+        $hotel->phonenumber =  $request->get('phonenumber');
+        $hotel->email =  $request->get('email');
+        $hotel->save();
 
         if ($request->api){
             return response()->json($hotel, 201);
         } else {
-            return view ('hotels', compact('hotels'));
+            return redirect('/hotels')->with('success', 'Hotel created!');
         }
     }
 
