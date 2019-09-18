@@ -13,7 +13,7 @@ class Hotel extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'address', 'city', 'state', 'country', 'zipcode', 'phonenumber', 'email'];
+    protected $fillable = ['name', 'address', 'city', 'state', 'country', 'zipcode', 'phonenumber', 'email', 'image'];
 
     /**
      * Relationships between models
